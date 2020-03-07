@@ -68,7 +68,7 @@ myApp.factory('interceptorService', ['Base64', 'busyNotificationService', 'modal
 				var modalOptions = {
 					isCloseEnabled: false,
 					headerText: 'Information',
-					bodyText: 'Could not connect to LMS Server. Please Contact LMS Support.'
+					bodyText: 'Could not connect to Server. Please Contact Support.'
 				};
 				modalService.showModal({}, modalOptions).then(function (result) {});
 				try{

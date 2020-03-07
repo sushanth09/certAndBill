@@ -20,40 +20,29 @@ myApp.controller('loginController', ['busyNotificationService', 'modalService', 
 			authenticationService.ClearCredentials();
 		}
 
-		$scope.login = function(isNewUser){
+		$scope.login = function() {
 			console.log("inside $scope.login");
-			$rootScope.globals.userRole = "ADMIN";
+			$scope.userRole = "ADMIN";
 			var data = {};
-			data["isNewUser"] = isNewUser;
-			authenticationService.login($scope.userId.toLowerCase(), $scope.password, data, function (response) {
+			data["userId"] = $scope.userId.toLowerCase();
+			data["password"] = $scope.password;
+			authenticationService.login(data, function (response) {
 				if (response.status == "success") {
-					if(response.data.isNewUser){
-						var modalOptions = {
-							isCloseEnabled: true,
-							closeButtonText: 'Cancel',
-							actionButtonText: 'Continue',
-							headerText: 'Information',
-							bodyText: response.message
-						};
-						modalService.showModal({}, modalOptions).then(function (result) {
-							$scope.login(true);
-						});
-						return;
-					}
 					$scope.loginError = "";
 					$rootScope.globals = response.data;
 					console.log("rootScope.globals: " + JSON.stringify($rootScope.globals));
 					$rootScope.globals.accessToken=response.accessToken;
-					if($rootScope.globals.userRole == "ADMIN") {
-						$state.go("userAdmin");
-					} else if($rootScope.globals.userRole == "MANAGEMENT") {
+					console.log("userRole: " + $scope.userRole);
+					if($scope.userRole == "ADMIN") {
+						console.log("inside if");
 						$state.go("userManagement");
-					} else if($rootScope.globals.userRole == "USER") {
-						$state.go("user");
+					} else if($scope.userRole == "STAFF") {
+						$state.go("staff");
+					} else if($scope.userRole == "STUDENT") {
+						$state.go("student");
 					}
 				}
 				$scope.responseError(response);
-				
 			});
 		}
 

@@ -1,4 +1,4 @@
-myApp.factory('lmsService', ['busyNotificationService', 'modalService', '$http', '$cookieStore', '$rootScope', '$timeout', 'config', 'cryptoService', 'interceptorService', 'localconfig', 'serverconfig', 'appConstants',
+myApp.factory('billingService', ['busyNotificationService', 'modalService', '$http', '$cookieStore', '$rootScope', '$timeout', 'config', 'cryptoService', 'interceptorService', 'localconfig', 'serverconfig', 'appConstants',
 	function (busyNotificationService, modalService, $http, $cookieStore, $rootScope, $timeout, config, cryptoService, interceptorService, localconfig, serverconfig, appConstants) {
 
 		var service = {};

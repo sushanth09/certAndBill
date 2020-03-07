@@ -31,7 +31,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 		.state('userManagement', {
 			url: "/userManagement",
 			controller: "userManagementController",
-			templateUrl: "app/Views/management/userManagement.html",
+			templateUrl: "app/Views/admin/userManagement.html",
 			params: {data: null}
 		})
 		.state('applicationConfiguration', {

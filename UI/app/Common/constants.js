@@ -23,8 +23,8 @@
 	});
 
 	myApp.constant('serverconfig', {
-		LOGIN_URL: APP_API_URL + 'login',
-		LOGOUT_URL: APP_API_URL + 'home',
+		LOGIN_URL: APP_API_URL + 'controller/login.php',
+		LOGOUT_URL: APP_API_URL + 'controller/logout.php',
 		METHOD_POST: 'POST'
 	});
 

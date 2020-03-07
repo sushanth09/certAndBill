@@ -37,19 +37,19 @@ a:focus, button:focus, input:focus {
     padding-top: 15px;
     padding-bottom: 15px;
 }
-.kyzer-login label {
+.bill-login label {
     float:left;
 	color:#807d7d;
 }
-.kyzer-login li:first-child span {
+.bill-login li:first-child span {
     position:absolute;
 }
-.kyzer-login li:first-child {
+.bill-login li:first-child {
     margin-top: 0;
     position:relative;
     height: 5px;
 }
-.kyzer-login li {
+.bill-login li {
     margin-top: 15px;
 }
 .block {
@@ -213,13 +213,13 @@ top:0px;
     color: #666;
     margin-top: 35px;
 }
-.kyzer-login {
+.bill-login {
     list-style:none;
     margin: 0;
     padding: 0;
 }
-.kyzer-login input[type="password"],
-.kyzer-login input[type="text"] {
+.bill-login input[type="password"],
+.bill-login input[type="text"] {
     padding-top: 8px;
     padding-bottom: 8px;
     padding-right: 12px;
@@ -232,8 +232,8 @@ top:0px;
     width: 100%;
 	
 }
-.kyzer-login input[type="password"]:focus,
-.kyzer-login input[type="text"]:focus {
+.bill-login input[type="password"]:focus,
+.bill-login input[type="text"]:focus {
     border: 1px solid #00000059;
     outline: none;
 }
@@ -371,7 +371,7 @@ top:0px;
     text-align: center;
     margin: 60px 80px 0;
 }
-/* .kyzer-login input.icons {
+/* .bill-login input.icons {
     padding-left: 30px;
 }
 .icons {
@@ -702,7 +702,7 @@ td {
     display: block;
     margin: 10px 0;
 }
-.kyzer-login li.or {
+.bill-login li.or {
     margin-bottom: 10px;
     margin-top: 10px;
     color: #666;
@@ -948,7 +948,7 @@ button.action-icons {
 }
 
 .mt-10,
-.kyzer-login li.mt-10 {
+.bill-login li.mt-10 {
     margin-top: 10px !important;
 }
 

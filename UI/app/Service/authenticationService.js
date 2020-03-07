@@ -16,27 +16,23 @@ myApp.factory('authenticationService', ['Base64', 'busyNotificationService', 'mo
             }
         }
 
-        service.login = function (userId, password, userData, callback) {
-            busyNotificationService.showBusyIndicator();
-            var pwd = Base64.encode(password);
-            var data = { "password": pwd };
-            var dataObj = {
-                "userId": userId,
-                "data": data,
-                "action": "validateUser",
-                "isNewUser": userData["isNewUser"]
-            };
-            console.log("dataObj >> " + JSON.stringify(dataObj));
-            dataObj = interceptorService.encapsulateRequest(dataObj);
-            var config = {
-                method: appEnvironment.METHOD_POST,
-                url: appEnvironment.LOGIN_URL,
-                data: dataObj
-            };
-            interceptorService.apiCall(config, function (response) {
-                callback(response);
-            });
+        service.login = function (data, callback) {
+			console.log("AuthenticationService.login()");
+			var dataObj={};
+			busyNotificationService.showBusyIndicator();
+			var pwd = md5(data["password"]);
+			var data = {"userId":data["userId"],"password": pwd,"action":"login"};
+			dataObj= {"data":data};
+			//dataObj = interceptorService.encapsulateRequest(dataObj);
+			var config = {
+				method: appEnvironment.METHOD_POST,
+				url: appEnvironment.LOGIN_URL,
+				data: dataObj,
+			};
+
+			interceptorService.apiCall(config, function (response) {callback(response);});
         };
+
         service.logout = function (action, callback) {
             //busyNotificationService.showBusyIndicator();
             var dataObj = {};
