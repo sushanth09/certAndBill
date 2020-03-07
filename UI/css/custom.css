@@ -1,0 +1,873 @@
+ .containerRadio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+/* body * {
+	font-family:'open sans';
+} */
+.circlecheckboxmarkGreenmed {
+    position: absolute;
+    margin-top:9px;
+	margin-left:-4px;
+    height: 16px;
+    width: 16px;
+    background-color: #eee !important;
+    border: 1px solid #ccc5c5;
+	border-radius:50px;
+}
+.circlecheckboxmarkGreenmed1 {
+    position: absolute;
+    margin-top:0px;
+	margin-left:2px;
+    height: 16px;
+    width: 16px;
+    background-color: #eee !important;
+    border: 1px solid #ccc5c5;
+	border-radius:50px;
+}
+.circlecheckboxmarkGreenmed2 {
+    position: absolute;
+    margin-top:0px;
+	margin-left:2px;
+    height: 10px;
+    width: 10px;
+    background-color: #eee !important;
+    border: 1px solid #ccc5c5;
+	border-radius:50px;
+}
+.circlecheckboxmarkGreenmed3 {
+    position: absolute;
+    margin-top:0px;
+	margin-left:-18px;
+    height: 16px;
+    width: 16px;
+    background-color: #eee !important;
+    border: 1px solid #ccc5c5;
+	border-radius:50px;
+}
+.circlecheckboxmarkBlue {
+    position: absolute;
+    margin-top:0px;
+	margin-left:2px;
+    height: 16px;
+    width: 16px;
+    background-color: #fff !important;
+    border: 1px solid #00a1f1;
+	border-radius:50px;
+}
+.circlecheckboxmarkYellow {
+    position: absolute;
+    margin-top:0px;
+	margin-left:2px;
+    height: 16px;
+    width: 16px;
+    background-color: #fff !important;
+    border: 1px solid #b94470;
+	border-radius:50px;
+}
+#commentBox {
+	background: white;
+    position: fixed;
+    bottom: -123px;
+    padding: 10px 20px;
+    left: 31px;
+    border: 1px solid #d1d1d1;
+    border-bottom: 0px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+	width:300px;
+	z-index:9999999999;
+}
+#commentBox li {
+	list-style:none;
+}
+.containerRadio1 {
+    display: block;
+    position: relative;
+    padding:10px 0px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight:normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#commentBox li .commentUserName {
+	font-weight:bold;
+}
+#commentBox li p {
+	background: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 10px;
+	word-break:break-all;
+}
+/* On mouse-over, add a grey background color */
+.containerRadio:hover input ~ .circlecheckboxmarkGreenmed {
+    background-color: #ccc !important;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containerRadio input:checked ~ .circlecheckboxmarkGreenmed {
+    background-color:#00a65a!important;
+    border: 1px solid #00a65a;
+	border-radius:50px;
+}
+/* On mouse-over, add a grey background color */
+.containerRadio:hover input ~ .circlecheckboxmarkGreenmed1 {
+    background-color: #ccc !important;
+}
+.containerRadio1:hover input ~ .circlecheckboxmarkGreenmed3 {
+    background-color: #ccc !important;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containerRadio input:checked ~ .circlecheckboxmarkGreenmed1{
+    background-color:#00a65a!important;
+    border: 1px solid #00a65a;
+	border-radius:50px;
+}
+.containerRadio1 input:checked ~ .circlecheckboxmarkGreenmed3{
+    background-color:#00a65a!important;
+    border: 1px solid #00a65a;
+	border-radius:50px;
+}
+.containerRadio:hover input ~ .circlecheckboxmarkGreenmed2 {
+    background-color: #ccc !important;
+}
+.containerRadio:hover input ~ .circlecheckboxmarkBlue {
+    background-color: #cccccc4f !important
+}
+.containerRadio:hover input ~ .circlecheckboxmarkYellow {
+    background-color: #cccccc4f !important
+}
+/* When the checkbox is checked, add a blue background */
+.containerRadio input:checked ~ .circlecheckboxmarkGreenmed2{
+    background-color:#00a1f1!important;
+    border: 1px solid #00a1f1;
+	border-radius:50px;
+}
+.containerRadio input:checked ~ .circlecheckboxmarkBlue{
+    background-color:#fff!important;
+    border: 1px solid #00a1f1;
+	border-radius:50px;
+}
+.containerRadio input:checked ~ .circlecheckboxmarkYellow{
+    background-color:#fff!important;
+    border:1px solid #b94470  !important;
+	border-radius:50px;
+}
+.navigationButton {
+	border-radius:0px;
+	width: 127px;
+	padding: 5px 10px;
+    text-align: left;
+}
+.btn.btn-primary .fa {
+ color:white;
+ line-height: 20px;
+}
+.panel-heading .panelTitle {
+	display:inline-block;
+	margin:0px;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.circlecheckboxmarkGreenmed:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.circlecheckboxmarkGreenmed1:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.circlecheckboxmarkGreenmed2:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.circlecheckboxmarkGreenmed3:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.circlecheckboxmarkBlue:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.circlecheckboxmarkYellow:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.containerRadio input:checked ~ .circlecheckboxmarkGreenmed:after {
+    display: block;
+}
+.containerRadio input:checked ~ .circlecheckboxmarkGreenmed1:after {
+    display: block;
+}
+.containerRadio1 input:checked ~ .circlecheckboxmarkGreenmed3:after {
+    display: block;
+}
+.containerRadio input:checked ~ .circlecheckboxmarkGreenmed2:after {
+    display: block;
+}
+.containerRadio input:checked ~ .circlecheckboxmarkBlue:after {
+    display: block;
+}
+.containerRadio input:checked ~ .circlecheckboxmarkYellow:after {
+    display: block;
+}
+/* Style the checkmark/indicator */
+.containerRadio .circlecheckboxmarkGreenmed:after {
+   left: 4px;
+    top: 1px;
+    width: 6px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.containerRadio .circlecheckboxmarkGreenmed1:after {
+   left: 4px;
+    top: 1px;
+    width: 6px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.containerRadio1 .circlecheckboxmarkGreenmed3:after {
+    left: 4px;
+     top: 1px;
+     width: 6px;
+     height: 9px;
+     border: solid #fff;
+     border-width: 0 2px 2px 0;
+     -webkit-transform: rotate(45deg);
+     -ms-transform: rotate(45deg);
+     transform: rotate(45deg);
+ }
+.containerRadio .circlecheckboxmarkGreenmed2:after {
+    left: 3px;
+     top: 1px;
+     width: 3px;
+     height: 6px;
+     border: solid #fff;
+     border-width: 0 2px 2px 0;
+     -webkit-transform: rotate(45deg);
+     -ms-transform: rotate(45deg);
+     transform: rotate(45deg);
+ }
+ .containerRadio .circlecheckboxmarkBlue:after {
+    left: 4px;
+     top: 1px;
+     width: 6px;
+     height: 9px;
+     border: solid #00a1f1;
+     border-width: 0 2px 2px 0;
+     -webkit-transform: rotate(45deg);
+     -ms-transform: rotate(45deg);
+     transform: rotate(45deg);
+ }
+ .containerRadio .circlecheckboxmarkYellow:after {
+    left: 4px;
+     top: 1px;
+     width: 6px;
+     height: 9px;
+     border: solid #b94470 ;
+     border-width: 0 2px 2px 0;
+     -webkit-transform: rotate(45deg);
+     -ms-transform: rotate(45deg);
+     transform: rotate(45deg);
+ }
+
+.modalGreyBg {
+	background: #edecec;
+	text-transform: uppercase;
+	padding: 0px 15px !important;
+}
+sub {
+ bottom: 0em;
+ font-size: 90%;
+}
+.modalGreyBg h3 {
+	color: #ae285d;
+	padding: 10px 15px;
+    font-size: 18px;
+    margin: 0px;
+	font-weight:normal;
+}
+
+#addContractMaster .modal-body {
+	padding:0px;
+	min-height:82vh;
+	width:100%;
+	float:left;
+}
+#addContractMaster .panel {
+	margin-bottom: 5px;
+}
+
+#orgMasterAdd .modal-body {
+	padding:0px;
+	min-height:82vh;
+	width:100%;
+	float:left;
+}
+#orgMasterAdd .panel {
+	margin-bottom: 5px;
+}
+#orgMasterEdit .modal-body {
+	padding:0px;
+	min-height:82vh;
+	width:100%;
+	float:left;
+}
+#orgMasterEdit .panel {
+	margin-bottom: 5px;
+}
+
+.dataTable tbody * {
+	font-size: 14px !important;
+}
+.dataTable thead * {
+	font-size: 14px !important;
+}
+#addContractMaster .navigationButtonsHolder {
+	background: #f6f6f6;
+}
+.activeTab .stepNumber {
+	border:1px solid #932953;
+	border-radius:50%;
+	width: 20px;
+    height: 20px;
+    line-height: 20px;
+	background:#932953;
+	color:#fff;
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+}
+ .stepNumber {
+	border:1px solid black;
+	border-radius:50%;
+	width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+}
+#addContractMaster {
+	padding-left: 0px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+	background: #ae285d !important;
+	color:white !important;
+	height:21px;
+	line-height:21px;
+	width:21px;
+	border:1px solid #ae285d;
+}
+.navigationButton {
+    background: transparent;
+    color: black;
+	padding: 10px;
+	font-weight:normal;
+}
+.activeTab {
+	/* background: #e2e2e2; */
+	border-bottom: 2px solid #ae285d;
+}
+.modal-dialog-full-screen .modal-footer {
+	float:left;
+	width:100%;
+}
+
+.processForm {
+	padding: 8px 2px;
+	min-height: 75vh;
+	box-shadow: 0 2px 15px 0 rgba(43, 43, 43, 0.05);
+	box-shadow: 0 0 5px 0 rgba(43, 43, 43, 0.25), 0 11px 6px -7px rgba(43,43,43,0.1);
+	border: none;
+	margin-bottom: 30px;
+	transition: all 0.3s ease-in-out;
+}
+.previewTableDiv {
+	height:175px;
+}
+.previewDivTitle {
+	color:#ae285d !important;
+	font-weight: 600;
+	width:100%;
+	display:inline-block;
+}
+.popupSectionHeading .panelTitle {
+	margin:0px;
+	display:inline-block;
+	font-weight:400;
+}
+.contractIdLabel, .contractNameLabel {
+	display:inline-block;
+	font-weight:600 !important;
+	text-transform:uppercase;
+}
+.popupSectionHeading .contractInfo label, .popupSectionHeading .contractInfo span {
+	line-height:26px;
+	
+}
+.popupSectionHeading span {
+	text-transform:uppercase;
+	font-weight:400
+}
+.panel-default>.panel-heading {
+	display: inline-block;
+    font-size: 14px;
+	background: transparent;
+	width:100%;
+	border:0px;
+}
+
+.panel {
+	background-color: transparent;
+	border:0px solid transparent;
+	box-shadow: 0 0px 0px rgba(0,0,0,.05);
+}
+.panel-heading {
+	padding: 0px;
+}
+.panelTitle h4 {
+	margin: 0px;
+	padding: 10px 0px 0px 0px;
+	border-bottom: 0px solid #ddd;
+    color: #7f7f7f;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.contractBasicInfo .panelTitle h4 {
+	margin: 0px;
+	padding: 10px 0px 0px 0px;
+	border-bottom: 0px solid #ddd;
+    color: #a22052;
+    font-weight: normal;
+    font-size: 18px;
+    text-transform: capitalize;
+}
+.upload-button, .attach-button.inlineWidthButton {
+	width: 77px;
+	position:absolute;
+}
+a.uploadFileName {
+    width: 65px;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.upload-button, .attach-button {
+	float:left;
+}
+.attach-button {
+	left: 0px;
+}
+.attach-button .input-upload.inlineWidthButton {
+    width: 77px;
+}
+.upload-attachments .alert.inlineWidthButton {
+    width: 77px;
+}
+.upload-attachments .alert {
+	left:0px;
+}
+.panel-body {
+	padding:0px 0px !important
+}
+.addNewButton {
+	font-size:13px;
+	margin: 5px 0px;
+}
+.basicInfoPreview label{
+	display:inline-block;
+}
+.basicInfoDiv {
+    display: inline-block;
+    padding: 0px 5px;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+
+.modalPinkFont{
+	background: #edecec;
+	text-transform: uppercase;
+	padding: 3px 0px !important;
+}
+.modalPinkFont h3 {
+	color: #ae285d;
+	padding: 9px 15px;
+    font-size: 18px;
+    margin: 0px;
+}
+.customTables thead {
+   
+  background:#635f5fbf;
+  color:#fff;
+    position: relative;
+    width: 100%;
+    transition: all 1s ease-in-out;
+}
+.customTables > thead > tr > th {
+    border-bottom: 1px solid #ccc;
+	font-weight:normal;
+}
+.customTables thead tr th, .customTables tbody tr td {
+	    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 4px 8px;
+  /*   line-height: 13px; */
+}
+.customTableFooter .customTablePagination {
+	width:21px;
+	line-height:21px;
+	height:21px;
+	display: inline-block;
+	border: 1px solid transparent;
+    border-radius: 50%;
+	color: black;
+}
+.customTableFooter .activePage{
+	background-color: #b21a53;
+    border: 1px solid #b31a53;
+    border-radius: 50%;
+    color: white;
+	
+}
+.customTableFooter {
+    padding: 10px 0px;
+}
+.responsiveTableDiv table {
+	min-width:100%;
+}
+/* #partiesList_wrapper .dataTables_scrollHeadInner .datatables.table {
+	width:100% !important
+}
+#partiesList_wrapper .dataTables_scrollHeadInner {
+	width:100% !important;
+}
+#partiesList {
+	width:100% !important;
+} */
+table.dataTable tbody th, table.dataTable tbody td {
+	padding:5px 10px;
+}
+.tbodyBorder{
+	border :0px solid #fff !important;
+}
+
+.responsiveTableDiv table {
+	min-width:100%;
+}
+.width120px {
+	display: inline-block;
+	width:120px;
+}
+.width170px {
+	display: inline-block;
+	width:170px;
+}
+.width160px {
+	display: inline-block;
+	width:160px;
+}
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    
+    border-radius: 0px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(193,193,193,0.8); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(193,193,193,0.4); 
+}
+.contractId {
+    color: #2e93ff;
+    font-weight: 400 !important;
+}
+
+.day.disabled {
+	background-color: transparent !important;
+	opacity: .3;
+    text-decoration: line-through;
+}
+.boxShadow{
+	box-shadow: 0 0 5px 0 rgba(43, 43, 43, 0.35), 0 11px 6px -7px rgba(146, 30, 30, 0.1);
+	border: none;
+	margin-bottom: 30px;
+	transition: all 0.3s ease-in-out;
+	padding: 3px 22px;
+}
+.colPadding{
+	padding-left: 30px;
+    padding-right: 30px;
+}
+.containerCheckBox {
+    display: block;
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    padding-top:8px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.containerCheckBox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.circlecheckboxmarkGreenmed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #eee !important;
+    border: 1px solid #ccc5c5;
+	border-radius:50px;
+}
+
+/* On mouse-over, add a grey background color */
+.containerCheckBox:hover input ~ .circlecheckboxmarkGreenmed {
+    background-color: #ccc !important;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containerCheckBox input:checked ~ .circlecheckboxmarkGreenmed {
+    background-color:#00a65a!important;
+    border: 1px solid #00a65a;
+	border-radius:50px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.circlecheckboxmarkGreenmed:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.containerCheckBox input:checked ~ .circlecheckboxmarkGreenmed:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.containerCheckBox .circlecheckboxmarkGreenmed:after {
+   left: 4px;
+    top: 1px;
+    width: 6px;
+    height: 9px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.button-4{
+  width:120px;
+  height:42px;
+  border:1px solid #b21953;
+  float:left;
+  text-align:center;
+  cursor:pointer;
+  position:relative;
+  box-sizing:border-box;
+  overflow:hidden;
+  margin:0 0 40px 50px;
+}
+.button-4 a{
+  
+  color:#b21953;
+  text-decoration:none;
+  line-height:42px;
+  transition:all .5s ease;
+  z-index:2;
+  position:relative;
+}
+.eff-4{
+  width:140px;
+  height:50px;
+  left:-140px;
+  background:#b01d53;
+  position:absolute;
+  transition:all .5s ease;
+  z-index:1;
+}
+.button-4:hover .eff-4{
+  left:0;
+}
+.button-4:hover a{
+  color:#fff;
+}
+.tableGrey th {
+	background:#666;
+	color:#fff;
+}
+.previewTableHeight{
+	height:151px;
+}
+.top5{
+	   margin-top: 5px;
+}
+.top8{
+    margin-top: 3px;
+    color:#2196F3;
+}
+.border{
+	border:1px solid #ccc !important;
+}
+.capitalize {
+   text-transform: capitalize;
+}
+.custmetableBorder{
+	
+    border: 0px solid #ccc;
+    margin-top: -2px;
+  
+	padding:4px;
+	text-align:center;
+
+}
+.custmetableBorderNumber{
+	 line-height:32px;
+}
+.custmetableBorderPage{
+	margin-top:6px;
+}
+.srNo{
+	margin-left:20px;
+}
+.display{
+	display:none;
+}
+.limitText {
+	width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	display: inline-block;
+}
+.width178 {
+	width:178px;
+}
+.width178 span {
+	width:178px;
+	float: left;
+	line-height: 17px;
+}
+.orgDelete{
+	font-size: 17px;
+    padding-top: 5px;
+}
+
+i.fa.fa-inr.inrup {
+    position: absolute;
+    bottom: 7px;
+    font-size: 16px;
+    left: 25px;
+    color: #7f7f7f;
+}
+
+i.fa.fa-inr.rup{
+    font-size: 19px;
+}
+
+i.fa.fa-inr.rupee{
+    text-align: left;
+    position: relative;
+    padding: 0 3px;
+}
+
+.datepicker-days tr td.active{
+    pointer-events: none;
+}
+.paddingTable{
+    padding-top:13px !important;
+    padding-bottom:13px !important;
+}
+.paddingTableTh{
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    line-height: 1.3!important;
+}

@@ -1,0 +1,467 @@
+<script>
+	window.onload = function() {
+	  window.location.href = "/lms/index.html";
+	};
+</script>
+<div class="container">
+  <div ng-include src="'app/Views/common/header.html'"></div>
+		<div class="content-wrapper">
+           <div class="inner-container">
+               <section class='body-section form'>
+									<div class='portlet light portlet-fit portlet-datatable bordered'>
+										<div class="row">
+									 	<div class="col-md-6">
+											<div class="col-md-2 noPadding"><label class="marginT8">Select NBFC</label></div>
+												<div class="col-md-5 noPadding">
+													
+													<select class="form-control" style="height:26px; font-size:10px;" id="nbfcNames" ng-model="nbfcNames">
+															<option selected value="" disabled>Select Action</option>
+															<option ng-repeat="data in nbfcList" >{{data.nameOfnbfc}}</option>
+													</select>
+												</div>
+												<button class="btn btn-primary marginL18" style="height:26px; font-size:10px;" ng-click="nbfcDetails()">Go</button>
+											</div>
+										</div> 
+                                    </div>
+                                 
+                                     
+								<div class="row">
+										<div class="col-lg-4">
+												<div class="card">
+														 <div class="card-body">
+																<div class="card-title">User<i class="fa fa-plus-circle pull-right addButtoni" ng-click="addCredit()" title="Add Credit"></i></div>
+																		<table class='col-md-12 customTables table-striped'>
+																								<thead class="theadBlue">
+																										<tr>
+																											<th>#</th>
+																												<th>Date</th>
+																												<th>Amount</th>
+																												<th>Pending</th>
+																												
+																										</tr>
+																								</thead>
+																								<tbody class="tbodyBorder">
+																								
+																									 <tr ng-repeat="data in creditList" style="background:#2196f338">
+																												<td>{{$index+1}}</td>
+																												<td>{{data.date}}</td>
+																												<td>{{data.creditAmount}}</td>
+																												<td>{{data.recoverPending}}</td>
+																											
+																										</tr>
+																								</tbody>
+																				</table>	
+																						<div class="custmetableBorder" style="background: #ddebf7;" ng-show="creditList.length  != 7">No Records Found</div>
+																						<span ng-show="creditList.length == 7" class="pull-right top8" ng-click="moreCreditRequest()">More Details >></span>
+																			
+																
+														</div>
+												</div>
+										</div> 
+										<div class="col-lg-4">
+											<div class="card">
+													 <div class="card-body">
+                                                                        <div class="card-title">Rules <i class="fa fa-plus-circle pull-right addButtoni" ng-click="addMutualFunds()"title="Modify Mutual Funds"></i></div>
+                                                                        <div class="table-responsive">
+																				<table class='col-md-12 customTables table-striped'>
+																							<thead class="theadGreen">
+																									<tr>
+																										<th>#</th>
+																											<th>Date</th>
+																											<th>Count</th>
+																											<th>Amount</th>
+																											<th>Invest</th>
+																											<th>Redeem</th>
+                                                                                                            <th>Margin</th>
+                                                                                                            <th>Action</th>
+																											
+																									</tr>
+																							</thead>
+																							<tbody class="tbodyBorder">
+																									 <tr ng-repeat="data in mutualFundList" style="background:#00d49d30">
+																											<td>{{$index+1}}</td>
+																											<td>{{data.date}}</td>
+																											<td>{{data.count}}</td>
+																											<td>{{data.mutualAmount}}</td>
+																											<td>{{data.investment}}</td>
+																											<td>{{data.redeem}}</td>
+                                                                                                            <td>{{data.margin}}</td>
+                                                                                                            <td>
+                                                                                                                    <span 
+                                                                                                                     title="Change Basic Info & Roles" ng-click="showUpdateUserInfoPopup(data.userId)" class="pointer icon-wrapper"><i class="fa fa-edit"></i></span>
+                                                                                                                    <span ng-show="data.userId !='admin@mindscript.com'" title="Delete User" ng-click="trashUser(data.userId)" class="pointer icon-wrapper"><i class="fa fa-trash-o" ></i></span>
+                                                                                                                </td>
+																									</tr>
+																								
+																							</tbody>
+                                                                                    </table>
+                                                                                </div>
+																					<div class="custmetableBorder" style="background: #e2efda;" ng-show="mutualFundList.length  != 7">No Records Found</div>
+                                                                                    <span ng-show="mutualFundList.length == 7" class="pull-right top8" ng-click="moreMutualFunds()">More Details >></span>	
+															
+													</div>
+											</div>
+									</div> 
+									<div class="col-lg-4">
+										<div class="card">
+												 <div class="card-body">
+															<div class="card-title">Groups <i class="fa fa-plus-circle pull-right addButtoni" ng-click="addPayments()" title="Add Credit"></i></div>
+																			<table class='col-md-12 customTables table-striped'>
+																						<thead class="theadOrange">
+																								<tr>
+																									<th>#</th>
+																										<th>Date</th>
+																										<th>Count</th>
+																										<th>Amount</th>
+																										<th>Status</th>
+																								</tr>
+																						</thead>
+																						<tbody class="tbodyBorder">
+																							<tr ng-repeat="data in paymentList" style="background: #fea90033  !important">
+																										<td>{{$index+1}}</td>
+																										<td>{{data.date}}</td>
+																										<td>{{data.count}}
+																											<span ng-if="data.flag == '1'"><span class="red"></span></span>
+																												<span ng-if="data.flag == '2'"><span class="yellow"></span></span>
+																												<span ng-if="data.flag == '3'"><span class="green"></span></span>
+																												<span ng-if="data.flag == '4'"><span class="blue"></span></span>
+																										</td>
+																										<td>{{data.pendingAmount}}</td>
+																										<td>{{data.status}}</td>
+																									
+																								</tr> 
+																						</tbody>
+																				</table>	
+																				<div class="custmetableBorder" style="background: #fce4d6;" ng-show="paymentList.length  != 7">No Records Found</div>
+                                                                                <span ng-show="paymentList.length == 7" class="pull-right top8" ng-click="morePayments()">More Details >></span>		
+															
+												</div>
+										</div>
+								</div> 
+								</div>
+							
+							
+							 </section>
+						</div>
+				</div>
+</div>
+<div class="modal" id="addCredit" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="addCredit">
+		<div class="modal-dialog " role="document">
+				<div class="modal-content modal-content-full-screen">
+						<div class="modal-header modalPinkFont">
+								<h4 class="modal-title pull-left" id="">Add Credit</h4>
+								<div class="pull-right">
+										<button type="button" class="close-request action-icons" data-dismiss="modal" ng-click="closeCollectionTranche()"></button>
+								</div>
+						</div>
+						<div class="modal-body">
+								<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
+												<div class="panel panel-default noBottomMargin">
+														<div class="panel-body noLeftPadding paddingTop10 paddingBottom5">
+																<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Date
+																				<span class="required"></span>
+																		</label>
+																		<div  ng-mouseover="showFullDatePicker()" data-date-format="dd-mm-yyyy"  ng-class= "input-group add-on col-md-12 startContractDate date" class="input-group add-on col-md-12 startContractDate date" >
+                                                                                <input value="" type="text" class="form-control  white ng-pristine ng-untouched ng-valid" data-date-format="dd-mm-yyyy" name="creditDate" id="creditDate" ng-model="creditAdd.creditDate" >
+                                                                                <div class="input-group-btn" >
+                                                                                    <button class="btn btn-default" >
+                                                                                        <i class="fa fa-calendar"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                          
+																</div>
+																<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Company Name
+																				<span class="required"></span>
+																		</label>
+																		<input type="text" ng-model="creditAdd.companyName" class="form-control">
+                                                                </div>
+                                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Amount
+																				<span class="required"></span>
+																		</label>
+																		<input type="text" ng-model="creditAdd.creditAmount" class="form-control">
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+						<div class="modal-footer footerBorder">
+								<div class="pull-right">
+										<!-- <button type="button" class="btn btn-primary saveBtn" c title="Add & Close">Close
+										</button> -->
+										<button type="button" class="btn btn-primary saveBtn"  ng-click="saveCredit()" title="Add">Add
+										</button>
+								</div>
+						</div>
+				</div>
+		</div>
+</div>
+<div class="modal" id="addMutualFunds" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="addMutualFunds">
+		<div class="modal-dialog " role="document">
+				<div class="modal-content modal-content-full-screen">
+						<div class="modal-header modalPinkFont">
+								<h4 class="modal-title pull-left" id="">Add Mutual Funds</h4>
+								<div class="pull-right">
+										<button type="button" class="close-request action-icons" data-dismiss="modal" ng-click="closeCollectionTranche()"></button>
+								</div>
+						</div>
+						<div class="modal-body">
+								<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
+												<div class="panel panel-default noBottomMargin">
+														<div class="panel-body noLeftPadding paddingTop10 paddingBottom5">
+																<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Date
+																				<span class="required"></span>
+																		</label>
+																		<div  ng-mouseover="showFullDatePicker()" data-date-format="dd-mm-yyyy"  ng-class= "input-group add-on col-md-12 startContractDate date" class="input-group add-on col-md-12 startContractDate date" >
+                                                                                <input value="" type="text" class="form-control  white ng-pristine ng-untouched ng-valid" data-date-format="dd-mm-yyyy" name="creditDate" id="creditDate" ng-model="mutualFundAdd.mutualFundDate" >
+                                                                                <div class="input-group-btn" >
+                                                                                    <button class="btn btn-default" >
+                                                                                        <i class="fa fa-calendar"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                          
+																</div>
+																<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Count
+																				<span class="required"></span>
+																		</label>
+																		<input type="text" ng-model="mutualFundAdd.cound" class="form-control">
+                                                                </div>
+                                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Amount
+																				<span class="required"></span>
+																		</label>
+																		<input type="text" ng-model="mutualFundAdd.mutualFundAmount" class="form-control">
+                                                                </div>
+                                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Invest
+																				<span class="required"></span>
+																		</label>
+																		<input type="text" ng-model="mutualFundAdd.Invest" class="form-control">
+                                                                </div>
+                                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Redeem
+																				<span class="required"></span>
+																		</label>
+																		<input type="text" ng-model="mutualFundAdd.redeem" class="form-control">
+                                                                </div>
+                                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Margin
+																				<span class="required"></span>
+																		</label>
+																		<input type="text" ng-model="mutualFundAdd.margin" class="form-control">
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+						<div class="modal-footer footerBorder">
+								<div class="pull-right">
+										<!-- <button type="button" class="btn btn-primary saveBtn" c title="Add & Close">Close
+										</button> -->
+										<button type="button" class="btn btn-primary saveBtn"  ng-click="saveCredit()" title="Add">Add
+										</button>
+								</div>
+						</div>
+				</div>
+		</div>
+</div>
+<div class="modal" id="addPayments" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="addPayments">
+		<div class="modal-dialog " role="document">
+				<div class="modal-content modal-content-full-screen">
+						<div class="modal-header modalPinkFont">
+								<h4 class="modal-title pull-left" id="">Add Payments</h4>
+								<div class="pull-right">
+										<button type="button" class="close-request action-icons" data-dismiss="modal" ng-click="closeCollectionTranche()"></button>
+								</div>
+						</div>
+						<div class="modal-body">
+								<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
+												<div class="panel panel-default noBottomMargin">
+														<div class="panel-body noLeftPadding paddingTop10 paddingBottom5">
+																<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Date
+																				<span class="required"></span>
+																		</label>
+																		<div  ng-mouseover="showFullDatePicker()" data-date-format="dd-mm-yyyy"  ng-class= "input-group add-on col-md-12 startContractDate date" class="input-group add-on col-md-12 startContractDate date" >
+                                                                                <input value="" type="text" class="form-control  white ng-pristine ng-untouched ng-valid" data-date-format="dd-mm-yyyy" name="paymentDate" id="paymentDate" ng-model="paymentAdd.paymentDate" >
+                                                                                <div class="input-group-btn" >
+                                                                                    <button class="btn btn-default" >
+                                                                                        <i class="fa fa-calendar"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                          
+																</div>
+																<div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Company Name
+																				<span class="required"></span>
+																		</label>
+																		<input type="text" ng-model="paymentAdd.companyName" class="form-control">
+                                                                </div>
+                                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 form-group">
+																		<label class="help-block">Amount
+																				<span class="required"></span>
+																		</label>
+																		<input type="text" ng-model="paymentAdd.paymentAmount" class="form-control">
+																</div>
+														</div>
+												</div>
+										</div>
+								</div>
+						</div>
+						<div class="modal-footer footerBorder">
+								<div class="pull-right">
+										<!-- <button type="button" class="btn btn-primary saveBtn" c title="Add & Close">Close
+										</button> -->
+										<button type="button" class="btn btn-primary saveBtn"  ng-click="saveCredit()" title="Add">Add
+										</button>
+								</div>
+						</div>
+				</div>
+		</div>
+</div>
+<div class="modal" id="moreCreditRequest" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="moreCreditRequest">
+		<div class="modal-dialog " role="document">
+				<div class="modal-content">
+						<div class="modal-header modalPinkFont">
+								<h4 class="modal-title pull-left" id="">Credit Request Details </h4>
+								<div class="pull-right">
+										<button type="button" class="close-request action-icons" data-dismiss="modal" ng-click="closeCollectionTranche()"></button>
+								</div>
+						</div>
+						<div class="modal-body">
+								<table class='col-md-12 customTables table-striped'>
+										<thead class="theadBlue">
+												<tr>
+													<th>#</th>
+														<th>Date</th>
+														<th>Amount</th>
+														<th>Pending</th>
+														
+												</tr>
+										</thead>
+										<tbody class="tbodyBorder">
+										
+											 <tr ng-repeat="data in creditList" style="background:#ddebf7">
+														<td>{{$index+1}}</td>
+														<td>{{data.date}}</td>
+														<td>{{data.creditAmount}}</td>
+														<td>{{data.recoverPending}}</td>
+													
+												</tr>
+										</tbody>
+						</table>
+						</div>
+						<div class="modal-footer footerBorder">
+							
+						</div>
+				</div>
+ 		</div>
+</div>
+<div class="modal" id="moreMutualFunds" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="moreMutualFunds">
+		<div class="modal-dialog " role="document">
+				<div class="modal-content">
+						<div class="modal-header modalPinkFont">
+								<h4 class="modal-title pull-left" id="">Mutual Funds Details </h4>
+								<div class="pull-right">
+										<button type="button" class="close-request action-icons" data-dismiss="modal" ng-click="closeCollectionTranche()"></button>
+								</div>
+						</div>
+						<div class="modal-body">
+								<div class="table-resposive">
+                                        <table class='col-md-12 customTables table-striped'>
+                                                    <thead class="theadGreen">
+                                                            <tr>
+                                                                <th>#</th>
+                                                                    <th>Date</th>
+                                                                    <th>Count</th>
+                                                                    <th>Amount</th>
+                                                                    <th>Invest</th>
+                                                                    <th>Redeem</th>
+                                                                    <th>Margin</th>
+                                                                    <th>Action</th>
+                                                                    
+                                                            </tr>
+                                                    </thead>
+                                                    <tbody class="tbodyBorder">
+                                                             <tr ng-repeat="data in mutualFundList" style="background:#e2efda">
+                                                                    <td>{{$index+1}}</td>
+                                                                    <td>{{data.date}}</td>
+                                                                    <td>{{data.count}}</td>
+                                                                    <td>{{data.mutualAmount}}</td>
+                                                                    <td>{{data.investment}}</td>
+                                                                    <td>{{data.redeem}}</td>
+                                                                    <td>{{data.margin}}</td>
+                                                                    <td>
+                                                                            <span 
+                                                                             title="Change Basic Info & Roles" ng-click="showUpdateUserInfoPopup(data.userId)" class="pointer icon-wrapper"><i class="fa fa-edit"></i></span>
+                                                                            <span ng-show="data.userId !='admin@mindscript.com'" title="Delete User" ng-click="trashUser(data.userId)" class="pointer icon-wrapper"><i class="fa fa-trash-o" ></i></span>
+                                                                        </td>
+                                                            </tr>
+                                                        
+                                                    </tbody>
+                                            </table>
+                                        </div>
+						</div>
+						<div class="modal-footer footerBorder">
+							
+						</div>
+				</div>
+ 		</div>
+</div>
+<div class="modal" id="morePayments" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="morePayments">
+		<div class="modal-dialog " role="document">
+				<div class="modal-content">
+						<div class="modal-header modalPinkFont">
+								<h4 class="modal-title pull-left" id="">Payments Details </h4>
+								<div class="pull-right">
+										<button type="button" class="close-request action-icons" data-dismiss="modal" ng-click="closeCollectionTranche()"></button>
+								</div>
+						</div>
+						<div class="modal-body">
+								<div class="table-resposive">
+                                        <table class='col-md-12 customTables table-striped'>
+                                                <thead class="theadOrange">
+                                                        <tr>
+                                                            <th>#</th>
+                                                                <th>Date</th>
+                                                                <th>Count</th>
+                                                                <th>Amount</th>
+                                                                <th>Status</th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody class="tbodyBorder">
+                                                    <tr ng-repeat="data in paymentList" style="background:#fce4d6">
+                                                                <td>{{$index+1}}</td>
+                                                                <td>{{data.date}}</td>
+                                                                <td>{{data.count}}
+                                                                    <span ng-if="data.flag == '1'"><span class="red"></span></span>
+                                                                        <span ng-if="data.flag == '2'"><span class="yellow"></span></span>
+                                                                        <span ng-if="data.flag == '3'"><span class="green"></span></span>
+                                                                        <span ng-if="data.flag == '4'"><span class="blue"></span></span>
+                                                                </td>
+                                                                <td>{{data.pendingAmount}}</td>
+                                                                <td>{{data.status}}</td>
+                                                            
+                                                        </tr> 
+                                                </tbody>
+                                        </table>
+                                        </div>
+						</div>
+						<div class="modal-footer footerBorder">
+							
+						</div>
+				</div>
+ 		</div>
+</div>

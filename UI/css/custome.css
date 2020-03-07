@@ -1,0 +1,105 @@
+/* Upload Document */
+
+#uploadFilePopup .alert-danger {
+	width:100%;
+	text-align:left;
+	margin-bottom:0px;
+	left: 0px;
+    position: relative;
+	padding: 5px;
+}
+.fileSubmissionError {
+	display:inline-block;
+	width:100%;
+}
+#uploadFilePopup .uploadedFileName {
+	float: left;
+    margin: 5px 5px;
+    color: black;
+    font-size: 13px;
+    left: 0px;
+    position: relative;
+	width: 100%;
+	text-align:left;
+}
+.uploadedFileName .fa-check-circle{
+	color:#317f43;
+}
+.uploadedFileName .fa-exclamation-circle{
+	color:#ee1c25;
+}
+#uploadFilePopup .modal-body {
+	text-align:center;
+	padding:10px 0px 10px 0px;
+}
+.upload-button, .attach-button {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border-radius: 0;
+    display: inline;
+    margin: 0px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    right: 0px;
+    height: 31px;
+    width: 130px;
+    float: right;
+    z-index: 100;
+}
+
+.upload-button, .attach-button.inlineWidthButton {
+    width: 77px;
+}
+.attach-button .input-upload {
+    position: absolute;
+    top: 0px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    height: 31px;
+    width: 130px;
+	right:0px;
+    cursor: pointer;
+
+}
+.attach-button .input-upload.inlineWidthButton {
+    width: 77px;
+
+}
+.upload-attachments {
+    margin: 0px;
+    padding: 0px 0px 1px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+	display: inline-block;
+}
+.upload-attachments .alert {
+	width:130px;
+	text-align:right;
+	margin-bottom:0px;
+	right: 0px;
+    position: absolute;
+}
+.upload-attachments .alert.inlineWidthButton {
+	width: 77px;
+}
+a.uploadFileName {
+    float: left;
+    margin: 5px 5px;
+    color: #666;
+    font-size: 13px;
+	font-style: italic;
+}
+.list-view input.btn-default {
+	color: #fff;
+	background: #2e367a;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 0;
+	font-size:14px;
+	border:1px solid #2e367a;
+	padding: 6px 22px;
+	}

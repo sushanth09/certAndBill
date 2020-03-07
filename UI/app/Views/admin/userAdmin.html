@@ -1,0 +1,71 @@
+<div class='list-view adminSection'>
+   
+    <link rel="stylesheet" href="plugins/selectize/dist/css/selectize.default.css">
+    <link href='css/customenew.css' rel='stylesheet' type='text/css'>
+	  <div class="container">
+	   <div data-ng-include="'app/Views/common/header.html'"></div>
+    <div class="content-wrapper">
+        <div class="inner-container">
+            <section class='body-section form'>
+                <div class='portlet light portlet-fit portlet-datatable bordered'>
+                    <div class="submenus">
+                        <ul class="subMenuList">
+                            <li ng-click="changeSubMenutab('userManagement')" class="{{stateAction == 'userManagement' ? 'active disable-click' : 'pointer'}}">Users</li>
+                            <li ng-click="changeSubMenutab('allRoles')" class="{{stateAction == 'allRoles' ? 'active disable-click' : 'pointer'}}">Roles</li>
+                            <li ng-click="changeSubMenutab('allGroups')" class="{{stateAction == 'allGroups' ? 'active disable-click' : 'pointer'}}">Groups</li>
+                        </ul>
+                        <div class='noPadding' style='text-align:center; display:inline-block;float:right'>
+                            <div ng-if="stateAction == 'userManagement'" class="form-group inlineBlock pull-right no-right-padding" style="margin-bottom:0px;">
+                                <button class='btn btn-primary' ng-click="showCreateNewUserPopup()" title="Create New User">Create New User</button>
+                            </div>
+                            <div ng-if="stateAction == 'allGroups'" class="form-group inlineBlock pull-right no-right-padding" style="margin-bottom:0px;">
+                                <button class='btn btn-primary' ng-click="showCreateNewGroupPopup()" title="Create New Group">Create New Group</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='portlet-body immediateTable'>
+                        <div>
+                            <div ng-if="stateAction == 'userManagement'">
+                                <div data-ng-include="'app/Views/admin/allUser.html'"></div>
+                            </div>
+                            <div ng-if="stateAction == 'allRoles'">
+                                <div data-ng-include="'app/Views/admin/allRoles.html'"></div>
+                            </div>
+                            <div ng-if="stateAction == 'allGroups'">
+                                <div data-ng-include="'app/Views/admin/allGroups.html'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+	</div>
+</div>
+</div>
+<script>
+    $(document).ready(function() {
+        $(".sub-menu-style").css("width", '516px');
+        $(".content-header").css("width", $(document).width() + 'px');
+        $('[data-toggle="tooltip"]').tooltip({
+            html: true
+        });
+        $('.advance_filter').css('width', '300px');
+        $('.advance_filter').css('background', 'white');
+        $('.advance_filter').css('border-left', '2px solid #f1f1f1');
+        $('.advance_filter').css('z-index', '1100');
+        $('.advance_filter').css('height', $(document).height());
+        $('.advance_filter').css('position', 'fixed');
+        $('.advance_filter').css('top', '0px');
+        $('.advance_filter').css('right', '-304px');
+        $('#apply_filter, .close-filter').click(function() {
+            $('.advance_filter').animate({
+                right: "-304px"
+            });
+        })
+        $('#adv_fil_btn').click(function() {
+            $('.advance_filter').animate({
+                right: "0px"
+            });
+        });
+    });
+</script>

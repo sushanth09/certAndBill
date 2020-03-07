@@ -1,0 +1,55 @@
+<div>
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="block">
+                    <div class="col-md-6">
+                        <div class="white-login-box">
+                           <div class="left">
+                           
+                                <form class="ng-scope ng-pristine ng-valid" name="form" ng-submit="login()" role="form">
+                                    <img src="images/logo.png">
+                                    <h4 class="shareHeading"> Login to your account</h4>
+                           
+                                    <ul class="kyzer-login">
+                                        <li>
+                                            <span class="error">{{loginError}}</span>
+                                        </li>
+                                        <li>
+                                           <input class="icons user" id="rlbUserid" name="Email Id" placeholder="Email Id" type="text" autocomplete="off" autofocus ng-model="userId" oninput="this.value=this.value.toLowerCase()" required>
+                                        </li>
+                                        <li>
+                                            <input class="icons pass margin-top15" id="rlbPassword" name="password" placeholder="Password" type="password" ng-model="password" autocomplete="off" required>
+                                        </li>
+                                    </ul>
+                                    <div class="mt-30 col-lg-12">
+                                        <div class="row">
+                                            <button class="btn btn-primary btn-block" ng-disabled="form.$invalid">LOGIN</button>
+                                        </div>
+                                        </br>
+                                        <div class="row">
+                                            <div ng-show="error" class="alert alert-danger">{{error}}</div>
+                                        </div>
+                                    </div>
+                                </form>
+                               
+                            </div>
+                            <div class="right">
+                               <div class="overlay">
+                                <h4 class="rightTitle">Billing and Certificate Management System</h4>
+                               </div>
+                                </div>
+                           
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="login-footer">
+        <div class="col-lg-12">
+            <p class="pull-right" style="color:#383232;">Designed & Developed by <b>Code Benders</b></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="notifications" id="confirmation" aria-labelledby="confirmationLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="pull-right">
+                    <button type="button" class="close-request action-icons" data-ng-click="modalOptions.close()"></button>
+                </div>
+                <h4 class="modal-title" id="confirmationLabel">{{modalOptions.headerText}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>{{modalOptions.bodyText}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary pull-right" data-ng-click="modalOptions.ok();" autofocus>{{modalOptions.actionButtonText}}</button>
+                <button type="button" class="btn btn-secondary pull-right" ng-show="modalOptions.isCloseEnabled" data-ng-click="modalOptions.close()" autofocus>{{modalOptions.closeButtonText}}</button>
+            </div>
+        </div>
+    </div>
+</div>

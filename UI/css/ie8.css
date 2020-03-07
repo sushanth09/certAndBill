@@ -1,0 +1,39 @@
+
+.checkbox label:before, .radio label:before {
+	display:none;
+}
+.checkbox input[type="checkbox"], .radio input[type="radio"] {
+	float: left !important;
+	position:static !important;
+	margin-left: 0;
+}
+.checkbox input {
+	margin-right: 10px;
+}
+.checkbox-right input[type='checkbox'] {
+	float: right !important;
+	margin-left: 20px;
+}
+.radio {
+	padding-left: 0;
+}
+.nwd {
+	padding-left: 0 !important;
+}
+.email-status label {
+	background: transparent;
+	width: auto;
+	height: auto;
+}
+.email-status input[type=checkbox] {
+	visibility: visible;
+}
+.checkbox .radio input[type="radio"], .checkbox input[type="checkbox"] {
+	opacity:1;
+	float: left;
+}
+.checkbox label {
+	float: left;
+	position:static;
+	width: auto;
+}

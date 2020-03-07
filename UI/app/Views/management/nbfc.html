@@ -1,0 +1,251 @@
+<style>
+    ::placeholder { 
+  color:#7f7f7f78!important;
+  opacity: 1; 
+}
+</style>
+<div class='list-view adminSection'>
+    <link rel="stylesheet" href="plugins/selectize/dist/css/selectize.default.css">
+    <link href='css/customenew.css' rel='stylesheet' type='text/css'>
+    <div class="container">
+        <div data-ng-include="'app/Views/common/header.html'"></div>
+        <div class="content-wrapper">
+            <div class="inner-container">
+                <section class='body-section form'>
+                    <div class='portlet light portlet-fit portlet-datatable bordered'>
+                        <div class="submenus">
+                            <div class='noPadding' style='text-align:center; display:inline-block;float: right'>
+                                <div class="form-group inlineBlock pull-right no-right-padding"
+                                    style="margin-bottom:0px;">
+                                    <button class='btn btn-primary' ng-click="showCreateNewNbfcPopup()"
+                                        title="Add NBFC">Add NBFC</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='portlet-body immediateTable'>
+                        <div class="responsiveTableDiv">
+                            <table ng-if="stateAction == 'nbfc'" class='col-md-12 customTables table-striped'>
+                                <thead>
+                                    <tr>
+                                        <th>Sr No</th>
+                                        <th>NBFC Name</th>
+                                        <th>Bank Name</th>
+                                        <th style="width:160px;">Bank IFSC No</th>
+                                        <th>Account No</th>
+                                        <th>Account Name</th>
+                                        <th>Minimum Balance</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="tbodyBorder">
+                                    <tr ng-repeat="data in nbfcDetailsList | limitTo : maxRows : currentStartRow">
+                                        <td>{{currentStartRow + $index+1}}</td>
+                                        <td title="{{data.nbfcName}}">{{data.nbfcName == null ? "" : (data.nbfcName.substring(0, 20) + (data.nbfcName.substring(0, 20).length < 20 ? "" : "..."))}}</td>
+                                        <td title="{{data.nbfcBankName}}">{{data.nbfcBankName == null ? "" : (data.nbfcBankName.substring(0, 20) + (data.nbfcBankName.substring(0, 20).length < 20 ? "" : "..."))}}</td>
+                                        <td>{{data.nbfcBankIfsc}}</td>
+                                        <td>{{data.nbfcAccountNo}}</td>
+                                        <td title="{{data.nbfcAccountName}}">{{data.nbfcAccountName == null ? "" : (data.nbfcAccountName.substring(0, 20) + (data.nbfcAccountName.substring(0, 20).length < 20 ? "" : "..."))}}</td>
+                                        <td>{{data.minimumBalance}}</td>
+                                        <td>
+                                            <span ng-click="showUpdatenbfcPopup(data.id)" title="Edit NBFC"
+                                                class="pointer icon-wrapper"><i class="fa fa-edit"
+                                                    style="color:#009688"></i></span>
+                                            <span ng-click="deleteNbfc(data.id, data.nbfcName)" title="Delete NBFC"
+                                                class="pointer icon-wrapper"><i class="fa fa-trash-o pointer"
+                                                    style="color:#F44336"></i></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-12 noPadding customTableFooter" style="text-align:center;">
+                            <div ng-show="nbfcDetailsList.length == 0" class="custmetableBorder"><span>No Records
+                                    Found</span></div>
+                            <span ng-show="nbfcDetailsList.length > 0">Showing
+                                {{nbfcDetailsList == undefined || nbfcDetailsList.length == 0 ? currentStartRow : currentStartRow+1}}
+                                to
+                                {{currentStartRow+currentEndRow}} of {{nbfcDetailsList.length}} Records</span>
+                            <div class="pull-right">
+                                <span ng-class="currentPage == 1 ? 'disable-click' : 'pointer'"
+                                    ng-click="showPreviousPage()"><i class="fa fa-angle-left"></i></span>
+                                <span compile="getPagination()"></span>
+                                <span ng-class="currentPage == totalPages.length ? 'disable-click' : 'pointer'"
+                                    ng-click="showNextPage()"><i class="fa fa-angle-right"></i></span>
+                            </div>
+                        </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="addNbfc" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modalPinkFont">
+                <h3 class="modal-title pull-left">Add NBFC</h3>
+                <div class="pull-right">
+                    <button class="close-request action-icons" title="Cancel" data-dismiss="modal"
+                        ng-click="resetData()"></button>
+                </div>
+            </div>
+            <form name="myForm" ng-submit="saveNbfc()" id="newnbfc" autocomplete="off">
+                <div class="modal-body">
+                    <div class="col-sm-12 noPadding">
+                            <div class="col-sm-12 noPadding">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">NBFC Name</label>
+                            <input type="text" id="nbfcName" class="form-control" ng-model="addNbfc.nbfcName" oninput="this.value = nameInput(this.value).toUpperCase()" ng-change="validateNbfc()" ng-blur = "validateNbfcName()"/>
+                            <span class="error" id = "nbfcNameId"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">Bank Name</label>
+                            <input type="text" id="nbfcBankName" class="form-control" ng-model="addNbfc.nbfcBankName"
+                                oninput="this.value = bankNameValid(this.value).toUpperCase()" ng-change="validateNbfc()" ng-blur = "validateNbfcBankName()"/>
+                            <span class="error" id = "nbfcBankNameId"></span>
+                        </div>
+                            </div>
+                            <div class="col-sm-12 noPadding">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">Bank IFSC No.</label>
+                            <input type="text" id="nbfcBankIfsc" class="form-control"
+                                ng-model="addNbfc.nbfcBankIfsc" placeholder="UTIB0000004" oninput="this.value = ifscNo(this.value).toUpperCase()"
+                                ng-blur = "validateNbfcBankIfsc()"/>
+                            <span class="error" id = "nbfcBankIfscId"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">Account No.</label>
+                            <input type="text" id="nbfcAccountNo" class="form-control"
+                                oninput="this.value = accountNumber(this.value).toUpperCase()" ng-model="addNbfc.nbfcAccountNo"
+                                maxlength="18" ng-change="validateNbfc()" placeholder= "9170100000000319" ng-blur = "validateNbfcAccountNo()"/>
+                            <span class="error" id = "nbfcBankAccountNoId"></span>
+                        </div>
+                    </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">Account Name</label>
+                            <input type="text" id="nbfcAccountName" class="form-control"
+                                oninput="this.value = nameInput(this.value).toUpperCase()" ng-model="addNbfc.nbfcAccountName"
+                                ng-change="validateNbfc()" ng-blur = "validateNbfcAccountName()"/>
+                            <span class="error" id = "nbfcBankAccountNameId"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                                <label class="control-label required"> Minimum Balance</label>
+                                <input type="text" style="text-align:right" id="minimumBalance" class="form-control"
+                                    oninput="this.value = accountNumber(this.value).toUpperCase()" ng-model="addNbfc.minimumBalance"
+                                    ng-change="validateNbfc()" ng-blur = "validateNbfcMinimumBalance()"/>
+                                <span class="error" id = "nbfcMinimumBalance"></span>
+                            </div>
+                        <!-- <div class="form-group col-sm-6">
+                            <label>Select Mutual Fund</label>
+                            <select name="mfDetails[]" ng-model="addNbfc.existingMfData" multiple id="select-mf-value" placeholder="Select Mutual Fund">
+                                <option ng-repeat="data in existingMfData" value="{{data.mfId}}">{{data.mfName}}</option>
+                            </select>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="modal-footer footerBorder">
+                    <div class="pull-right">
+                        <div class="form-group">
+                            <input type="submit" ng-disabled="allowNbfc" value="Save" class="btn btn-primary saveBtn" />
+                            <input type="submit" value="Cancel" data-dismiss="modal" ng-click="resetData()"
+                                class="btn btn-primary saveBtn" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="editNbfc" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modalPinkFont">
+                <h3 class="modal-title pull-left">Edit NBFC</h3>
+                <div class="pull-right">
+                    <button class="close-request action-icons" title="Cancel" data-dismiss="modal"
+                        ng-click="resetData()"></button>
+                </div> 
+            </div>
+            <form name="myForm" ng-submit="saveEditNbfc()" id="editNbfc" autocomplete="off">
+                <div class="modal-body">
+                        <div class="col-sm-12 noPadding">  
+                    <div class="col-sm-12 noPadding">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">NBFC Name</label>
+                            <input type="text" id="nbfcName" class="form-control" ng-model="editNbfc.nbfcName"
+                                oninput="this.value = nameInput(this.value).toUpperCase()" ng-change="validateNbfc()" ng-blur = "validateNbfcEdit()" disabled/>
+                                
+                           
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">Bank Name</label>
+                            <input type="text" id="nbfcBankName" class="form-control" ng-model="editNbfc.nbfcBankName"
+                                oninput="this.value = bankNameValid(this.value).toUpperCase()" ng-change="validateNbfc()" ng-blur = "validateNbfcBankNameEdit()" />
+                                <span class="error" id = "nbfcBankNameEdit"></span>
+                              
+                        </div>
+                    </div>
+                    <div class="col-sm-12 noPadding">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">Bank IFSC No.</label>
+                            <input type="text" id="nbfcBankIfsc" class="form-control"
+                                oninput="this.value = ifscNo(this.value).toUpperCase()" ng-model="editNbfc.nbfcBankIfsc"
+                                ng-change="validateNbfc()" ng-blur = "validateNbfcBankIfscEdit()"/>
+                                <span class="error" id = "nbfcBankIFSCEdit"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">Account No.</label>
+                            <input type="text" id="nbfcAccountNo" class="form-control"
+                                oninput="this.value = accountNumber(this.value).toUpperCase()" ng-model="editNbfc.nbfcAccountNo"
+                                ng-change="validateNbfcEdit()" maxlength="18"  ng-blur = "validateNbfcAccountNoEdit()"/>
+                                <span class="error" id = "nbfcBankAccountNoIdEdit"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 noPadding">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label required">Account Name</label>
+                            <input type="text" id="nbfcAccountName" class="form-control"
+                                oninput="this.value = nameInput(this.value).toUpperCase()" ng-model="editNbfc.nbfcAccountName"
+                                ng-change="validateNbfc()" ng-blur = "validateNbfcAccountNameEdit()"/>
+                                <span class="error" id = "nbfcBankAccountNameIdEdit"></span>
+                                
+                        </div>
+                        <div class="form-group col-sm-6">
+                                <label class="control-label required"> Minimum Balance</label>
+                                <input type="text" style="text-align:right" id="minimumBalance" class="form-control"
+                                    oninput="this.value = accountNumber(this.value).toUpperCase()" ng-model="editNbfc.minimumBalance"
+                                    ng-change="validateNbfc()" ng-blur = "validateNbfcMinimumBalanceEdit()"/>
+                                <span class="error" id = "nbfcMinimumBalanceEdit"></span>
+                            </div>
+                        <!-- <div class="form-group col-sm-6">
+                            <label>Select Mutual Fund</label>
+                            <select name="mfDetailsEdit[]" ng-model="editNbfc.existingMfData" multiple id="select-mf-value-edit" placeholder="Select Mutual Fund">
+                                <option ng-repeat="data in existingMfData" value="{{data}}">{{data}}</option>
+                            </select>
+                        </div> -->
+                        <!-- <div class="form-group col-sm-6">
+                            <label>Select Mutual Fund</label>
+                            <select  name="mfDetailsEdit[]" ng-model="editNbfc.existingMfData" multiple id="select-user-roles" placeholder="Select Mutual Fund">
+                                <option ng-repeat="data in existingMfData" value="{{data.mfId}}">{{data.mfName}}</option>
+                            </select>
+                        </div> -->
+                        
+                    </div>
+                    </div>
+                </div>
+                <div class="modal-footer footerBorder">
+                    <div class="pull-right">
+                        <div class="form-group">
+                            <input type="submit" value="Save" ng-disabled="allowNbfcEdit" class="btn btn-primary saveBtn" />
+                            <input type="submit" value="Cancel" data-dismiss="modal" ng-click="resetData()"
+                                class="btn btn-primary saveBtn" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,199 @@
+<script>
+	window.onload = function() {
+	  window.location.href = "/lms/index.html";
+	};
+</script>
+<div class="header" ng-controller="headerController">
+	<header class="main-header">
+		<div class="inner-container">
+			<a href="#" class="logo ">
+				<span class="logo-lg" style="float: left;">
+					<img src="images/logo.png" />
+				</span>
+			</a>
+			
+			<nav class="navbar navbar-static-top">
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav marginTop">
+						
+						<li class="headerSettings">
+							<i class="fa fa-sign-out pointer" title="Logout" ng-click="userLogout()"></i>
+						</li>
+						
+						<li class="headerSettings">
+							<span class="dropdown" >
+								<small class="dropdown-toggle" data-toggle="dropdown">
+									<i class="fa fa-cog pointer" ng-click="" title="Settings"></i>
+								</small>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="pointer" ng-click="showUpdatePersonalProfile()" ng-click="signout()" title="My Profile">My Profile</a>
+									</li>
+								</ul>
+							</span>
+						</li>
+						<!-- <li class="headerSettings">
+								<span style="cursor:pointer" onclick="openNav()"><img style="height:15px;width:15px;" title="Quick Panel" src="images/panel.png"></span>
+						</li> -->
+						<li class="user user-menu" style="text-align:right;font-size: 14px;" title="User Profile">
+							<span style='text-transform:capitalize;'>
+								<b>{{userName}}</b>
+							</span>
+							<br/>
+							<span class="dropdown">
+								<small style="font-size: 14px;" class="dropdown-toggle pointer" data-toggle="dropdown">{{globals.userRole | uppercase}} 
+									
+									
+									<i class="fa fa-caret-down" ng-show="userRoleList.length > 1" style="font-size: 16px;" ></i>
+								</small>
+							</a>
+							<ul class="dropdown-menu" ng-show="userRoleList.length > 1">
+								<li ng-repeat="value in userRoleList"  ng-if="value!=globals.userRole">
+									<a href="#" ng-click="changeActiveRole(value)" ng-click="signout()">{{value | uppercase}}</a>
+								</li>
+							</ul>
+						</span>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</header>
+<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#"></a>
+		<a href="#">Services</a>
+		<a href="#">Clients</a>
+		<a href="#">Contact</a>
+	</div>
+<div class="navigation-link">
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li ng-class="userAdminPage ? 'active' : 'pointer'"  ng-show="globals.userRole == 'ADMIN'">
+							<a ui-sref="userAdmin">User Management</a>
+						</li>
+						 <li ng-class="userManagementPage ? 'active' : ''"  ng-show="globals.userRole == 'MANAGEMENT'">
+							<a ui-sref="userManagement">Rights</a>
+						</li> 
+						<!-- <li ng-class="applicationConfiguration ? 'active' : 'pointer'">
+							<a ui-sref="applicationConfiguration">Application Configuration</a>
+						</li> -->
+						<li ng-class="holidayMasterPage ? 'active' : 'pointer'" ng-show="globals.userRole == 'ADMIN'">
+							<a ui-sref="admin-holiday-master">Holiday Master(Bank)</a>
+						</li>
+						<li ng-class="holidayMasterPageMF ? 'active' : 'pointer'" ng-show="globals.userRole == 'ADMIN'">
+							<a ui-sref="admin-holiday-mf-master">Holiday Master(MF)</a>
+						</li>
+						 <li ng-class="allReports ? 'active' : 'pointer'" ng-show="globals.userRole == 'MANAGEMENT'">
+							<a  ui-sref="report">Reporting</a>
+						</li>
+						<li ng-class="mutualFund ? 'active' : 'pointer'" ng-show="globals.userRole == 'MANAGEMENT'">
+							<a ui-sref="mutualFund">Mutual Fund</a>
+						</li>
+						<li ng-class="nbfc ? 'active' : 'pointer'" ng-show="globals.userRole == 'MANAGEMENT'">
+							<a ui-sref="nbfc">NBFC</a>
+						</li>
+
+						<!-- <li ng-class="checker ? 'active' : 'pointer'" ng-show="globals.userRole == 'ADMIN'">
+							<a ui-sref="checker">Checker</a>
+						</li>  -->
+						<!-- <li ng-class="documentUploadPage ? 'active' : 'pointer'" ng-show="globals.userRole == 'MANAGEMENT'">
+							<a ui-sref="documentUpload">Document Upload</a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+</div>
+<div class="modal fade" id="updatePersonalProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header modalPinkFont">
+				<h3 class="modal-title pull-left">Update basic info</h3>
+                <div class="pull-right">
+                    <button type="button" class="close-request action-icons" title="Cancel" data-dismiss="modal"></button>
+                </div>
+			</div>
+			<form name="myForm" ng-submit="updatePersonalBasicInfo()" id="updateUserPersonalBasicInfo">
+				<div class="modal-body">
+					<div class="col-sm-12 noPadding">
+						<div class="form-group">
+							<label class="control-label">User name 
+								<small>(Cannot be modified)</small>
+							</label>
+							<input type="text" class="form-control capitalize" ng-model="updateProfileDetails.userName" placeholder="User Name*" readonly required/>
+							
+						</div>
+						<div class="form-group">
+							<label class="control-label">Mobile number</label>
+							<input type="text" class="form-control" ng-keyup="updateProfileValidator()" ng-model="updateProfileDetails.mobileNumber" ng-change="validateBasicInfo()" maxlength="10" placeholder="Mobile No*" input-validator valid-values="numericChar" required/>
+							
+						</div>
+						<div class="form-group">
+							<label class="control-label">Email / User Id 
+								
+								
+								<small>(Cannot be modified)</small>
+							</label>
+							<input type="email" class="form-control email" ng-model="updateProfileDetails.userId" readonly placeholder="Email ID*" required/>
+							
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer footerBorder">
+				<div class="pull-right">
+                            <input type="submit" value="Update" ng-disabled="!allowUpdateBasicInfo" class="btn btn-primary saveBtn" disabled="disabled">
+                        </div>
+				<!-- 	<div class="" style="text-align:center">
+						<button type="submit" ng-disabled="!allowPersonalProfileUpdate" class="btn  btn btn-primary pull-right" title="Update">Update</button>
+						 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancel</button> 
+					</div> -->
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="sessionModal modal fade" id="logout_popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header border-bottom">
+				<h4 class="modal-title" id="auditTrailLabel">SESSION TIMEOUT</h4>
+			</div>
+			<div class="modal-body">
+				<div style="width:100%;height:100%;margin: 0px; padding:0px">
+					<p style="font-size: 15px;">Your session is about to expire in 
+						
+						
+						<span id="timer" style="display: inline;font-style: bold">15</span> seconds.
+					
+					
+					</p>
+					<p style="font-size: 15px;">Do you want to stay signed in?</p>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="pull-right">
+					<button type="button" id="keepLogIn" class="btn btn-primary"  >Keep me signed in</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <script>
+   function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+
+	
+}
+    </script> -->

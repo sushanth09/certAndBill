@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+		<title>Billing and Certificate System</title>
+		<link href="css/fonts/familyOpenSans.css" rel="stylesheet" type='text/css'>
+		<link href="css/fonts/familyRoboto.css" rel="stylesheet" type='text/css'>
+        <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+        <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" type='text/css'>
+        <link href="css/style.css" rel="stylesheet" type='text/css'>
+		<link href="css/multi-select.css" rel="stylesheet" type='text/css'>
+		<link href="css/calendar_by_year.css" rel="stylesheet" type='text/css'>
+        <link href="css/vendor/datetimepicker.css" rel="stylesheet" type='text/css'>
+        <link href="css/vendor/bootstrap-select.css" rel="stylesheet" type='text/css'>
+        <link href="css/vendor/jquery.touchPDF.css" rel="stylesheet" type='text/css'>
+        <link href="css/vendor/angular-ui-switch.css" rel="stylesheet" type='text/css'>
+        <link href="css/vendor/simple.css" rel="stylesheet" type="text/css"/>
+
+        <link href="css/main-table.css" rel="stylesheet" type="text/css"/>
+		<link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+		
+		  <!-- CSS for Search Data Tables-->
+		<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+        <!--[if IE 9]>
+            <link href="css/ie.css" rel="stylesheet" type='text/css'>
+		<![endif]-->
+
+        <!--[if IE 8]>
+            <link href="css/ie.css" rel="stylesheet" type='text/css'>
+            <link href="css/ie8.css" rel="stylesheet" type='text/css'>
+		<![endif]-->
+
+        <!--[if lt IE 9]>
+            <script src="js/vendor/html5shiv.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Google Roboto font -->
+        <link href='css/vendor/googlecss/roboto.css' rel='stylesheet' type='text/css'>
+       
+    </head>
+
+    <!-- <body class="{{bodylayout}}" oncopy="return false" oncut="return false" onpaste="return false"> -->
+	<body class="{{bodylayout}}">
+
+        <div ng-class="{'block-ui':loading}"></div>
+        <div loading-Widget ng-show="loading"></div>
+        <div ui-view></div>
+
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/vendor/angularjs/1.4.6/angular.js"></script>
+        <script src="js/vendor/draggable/angular-drag-and-drop-lists.min.js" type="text/javascript"></script>
+        <script src="js/vendor/angularjs/1.4.6/angular-animate.min.js"></script>
+        <script src="js/ui-bootstrap-tpls.min.js"></script>
+		 <script src="js/jquery.multi-select.js"></script>
+        <script src="js/vendor/angularjs/1.4.6/angular-cookies.min.js"></script>
+        <script src="js/angular-sanitize.js"></script>
+        <script src="js/vendor/angular-ui-router.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+		<script src="js/vendor/encrypt/aes.js"></script>
+		<script src="js/vendor/encrypt/AesUtil.js"></script>
+		<script src="js/vendor/encrypt/pbkdf2.js"></script>
+        <script src="js/vendor/encrypt/hmac-sha1.js"></script>
+        <script src="app/app.js"></script>
+
+        <script src="app/routing/routing.js"></script>
+        <script src="app/Controller/loginController.js"></script>
+        <script src="app/Controller/headerController.js"></script>
+        <script src="app/Controller/homeController.js"></script>
+        <!-- Admin controller -->
+        <script src="app/Controller/admin/adminController.js"></script>
+		<script src="app/Controller/admin/userAdminController.js"></script>
+		<!-- Management controller -->
+		<script src="app/Controller/management/nbfcController.js"></script>
+        
+		<!-- User controller -->
+        <script src="app/Service/authenticationService.js"></script>
+        <script src="app/Service/busyNotificationService.js"></script>
+        <script src="app/Service/modalService.js"></script>
+        <script src="app/Service/cryptoService.js"></script>
+		<script src="app/Service/interceptorService.js"></script>
+		<script src="app/Service/billingService.js"></script>
+		<script src="app/Service/headerServices.js"></script>
+        <!-- Utils -->
+        <script src="app/Common/constants.js"></script>
+		<!-- directives -->
+        <script src="app/Directives/angular-pdf.js"></script>
+        <script src="app/Directives/loading-widget-directive.js"></script>
+        <script src="app/Directives/input-validator.js"></script>
+		<!-- external js -->
+        <script src="js/vendor/datetime/moment.js"></script>
+        <script src="js/vendor/datetime/ng-moment.js"></script>
+        <script src="js/vendor/datetime/datetimepicker.js"></script>
+        <script src="js/vendor/csv/ng-csv.min.js"></script>
+        <script src="js/vendor/csv/angular-sanitize.min.js"></script>
+		<script src="js/vendor/csv/json2.js"></script>
+		<!--Utils-->
+		<script src="app/Utils/util.js"></script>
+        <!-- PDF -->
+        <script type="text/javascript" src="js/vendor/pdf/jquery.touchPDF.js"></script>
+        <script type="text/javascript" src="js/vendor/pdf/pdf.compatibility.js"></script>
+        <script type="text/javascript" src="js/vendor/pdf/pdf.js"></script>
+        <script type="text/javascript" src="js/vendor/pdf/jquery.touchSwipe.js"></script>
+        <script type="text/javascript" src="js/vendor/pdf/jquery.panzoom.js"></script>
+        <script type="text/javascript" src="js/vendor/pdf/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="js/vendor/scrollbar/mb-scrollbar.js"></script>
+		<script src="js/ui-bootstrap-tpls.min.js"></script>
+        <!--[if !(IE 8)]><!-->
+        <script type="text/javascript" src="js/vendor/switch/angular-ui-switch.js"></script>
+        <script type="text/javascript" src="js/vendor/selectpicker/bootstrap-select.js"></script>
+        <script src="js/script.js"></script>
+		<link rel="stylesheet" href="plugins/datepicker/datepicker3.css" />
+		<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
+		<!-- Js for Search Data Tables-->
+		<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="plugins/datatables/dataTables.responsive.min.js"></script>
+		<script src="plugins/datatables/dataTables.buttons.min.js"></script>
+		<script src="plugins/datatables/buttons.colVis.min.js"></script>
+		<link rel="stylesheet" href="plugins/datatables/jquery.dataTables.min.css" />
+		<link rel="stylesheet" href="plugins/datatables/responsive.dataTables.min.css" />
+		<link href='css/customenew.css' rel='stylesheet' type='text/css'>
+		<link href="css/custom.css" rel="stylesheet" type='text/css'>
+		<!--<![endif]-->
+        <!-- uploading file -->
+        <script type="text/javascript" src="js/vendor/fileupload/angular-file-upload.min.js"></script>
+		<!-- End -->
+		
+    </body>
+</html>

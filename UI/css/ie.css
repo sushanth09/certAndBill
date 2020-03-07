@@ -1,0 +1,40 @@
+.kyzer-login label {
+	display:block;
+	text-align:left;
+}
+.pagination > li > a, .pagination > li > span {
+	padding: 3px 8px;
+}
+.attach-button .input-upload {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	right: auto;
+}
+.top-action-items .section-panel {
+	float: left;
+	width: 100%;
+}
+.top-action-items .new-request {
+	float: left;
+}
+.top-action-items .action-icons {
+	float: left;
+}
+.top-action-items .icons {
+	float: left;
+}
+.processchk input[type=checkbox] {
+	visibility: visible;
+	margin: -5px 0 0 0;
+	float: left;
+}
+.processchk label, 
+.processchk div {
+	display:none;
+}
+select.bs-select-hidden, select.selectpicker {
+	display: block !important;
+}
+
+table.table-fixedheader tr {
+	height: 33px;
+}

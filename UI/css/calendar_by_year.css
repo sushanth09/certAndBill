@@ -1,0 +1,172 @@
+#year-calendar p {
+  font-size: 24pt;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+#date-range {
+  font-size: 12pt;
+  text-align: center;
+}
+
+#year {
+  font-size: 24pt;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  max-height: 1em;
+}
+#year-calendar{
+	display: inline-block;
+}
+#year ul {
+  display: inline-block;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+#year ul li {
+  float: left;
+  list-style-type: none;
+  padding-left: 6pt;
+  padding-right: 6pt;
+  margin: 0;
+}
+
+#year ul li.selected-year {
+  font-size: 36pt;
+}
+
+#year-calendar table {
+  font-family: Verdana, sans-serif;
+  font-weight: normal;
+  padding: .5em;
+  display:inline-block;
+  text-align: center;
+  border-collapse: collapse;
+  width: 16.667%;
+  vertical-align:top;
+}
+#year-calendar table:nth-child(7), #year-calendar table:nth-child(1) {
+  padding-left:0px;
+}
+#year-calendar table:nth-child(6), #year-calendar table:nth-child(12) {
+  padding-right:0px;
+}
+#year-calendar .day{
+	font-size:14px;
+	width: 30px;
+    height: 29px;
+}
+#year-calendar th, #year-calendar td {
+  padding: 1px;
+  transition: all 0.3s ease;
+  overflow : visible;
+}
+#year-calendar .previousdate, #year-calendar deactivate, #year-calendar tbody td:first-child, #year-calendar tbody tr td:last-child {
+  
+  pointer-events: none;
+  opacity:.5;
+}
+#year-calendar .previousdate, #year-calendar deactivate, #year-calendar tbody td:first-child, #year-calendar tbody tr td:first-child {
+  
+  pointer-events: none;
+  opacity:.5;
+}
+
+#year-calendar thead {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+#date-range{
+	display:none;
+}
+#year-calendar th.month_name {
+  text-align: center;
+  font-weight:normal;
+  background: #f1f1f1;
+  line-height:14px;
+  padding: 10px;
+}
+
+#year-calendar th.month_name.current {
+  color: #CB6C6B;
+  border-bottom: 2px #CB6C6B solid;
+  padding-bottom: 0px;
+  
+}
+
+#year-calendar th.current {
+  color: #CB6C6B;
+}
+
+#year-calendar td.current {
+  background-color: #9e9e9ebd;
+  color: white;
+}
+
+#year-calendar td.selected {
+
+  color: black !important;
+
+}
+#year-calendar .deactivate{
+	text-align:center !important;
+	background:#505050 !important;
+	color: white !important;
+}
+#year-calendar .tooltip{
+  position:relative !important;
+  display:table-cell !important;
+  opacity:1 !important;
+  z-index:auto !important;
+  text-align: center !important;
+  height: 20px !important;
+  text-align: center !important;
+  line-height: 20px !important;
+  font-size: 14px !important;
+  font-family:Roboto !important;
+}
+#year-calendar .day_name{
+	padding:5px 2px;
+	vertical-align: bottom;
+    border-bottom: 0px solid #dee2e6;
+	font-weight: normal;
+    font-size: 14px;
+	background: #dee2e6;
+    line-height: 14px;
+	text-align: center;
+}
+#year-calendar .tooltip[data-title]:hover:after {
+  content: attr(data-title) !important;
+  padding: 4px 8px !important;
+  color: #fff !important;
+  left: 100% !important;
+  top: -20% !important;
+  white-space: nowrap !important;
+  border-radius: 5px !important;
+  background:#000 !important;
+  z-index:1000 !important;
+  position:absolute !important;
+}
+.form-control:focus{
+    border-color: #ccc !important;
+}
+#year-calendar a.removeIcons{
+    font-size: 8px !important;
+    top: 0px !important;
+    position: absolute !important;
+    right: 0px !important;
+    background: black !important;
+    color: white !important;
+    width: 10px !important;
+    border-radius: 50% !important;
+    line-height: 11px !important;
+	padding: 0px 2.7px !important;
+}
+#year-calendar a.removeIcons:hover{
+	color:white !important;
+}
