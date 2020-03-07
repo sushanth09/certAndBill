@@ -29,6 +29,7 @@ CREATE TABLE `bill_user_management` (
   `L_NAME` varchar(50) DEFAULT NULL,
   `CATEGORY` varchar(20) DEFAULT NULL,
   `EMAIL_ID` varchar(50) DEFAULT NULL,
+  `PASSWORD` varchar(50) NOT NULL,
   `MOBILE_NO` varchar(20) DEFAULT NULL,
   `DOB` date DEFAULT NULL,
   `ACCESS_TOKEN` varchar(100) DEFAULT NULL,
