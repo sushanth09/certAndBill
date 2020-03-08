@@ -15,7 +15,7 @@
 
 	$req_data = json_decode($request);
 	LoggerInfo("login.php", "json data::: ".json_encode($req_data));
-	//$req_data = interceptorService($database, $conn, $req_data);
+	$req_data = interceptorService($database, $conn, $req_data);
 	$response = array();
 	
 	$currentFileName = "login.php";

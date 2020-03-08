@@ -39,23 +39,21 @@ myApp.factory('interceptorService', ['Base64', 'busyNotificationService', 'modal
 			return req;
 		};
 		 service.getConfig = function(data,url) {
-			 var dataObj={};
-			  dataObj = data;
-				busyNotificationService.showBusyIndicator();
-				dataObj = service.encapsulateRequest(data);
-				var config = {
-					method: appEnvironment.METHOD_POST,
-					url: url,
-					data: dataObj,
-				};
-				
-				return config ;
+			var dataObj={};
+			busyNotificationService.showBusyIndicator();
+			dataObj = data;
+			var config = {
+				method: appEnvironment.METHOD_POST,
+				url: url,
+				data: dataObj,
+			};
+			console.log("interceptorService: " + JSON.stringify(dataObj));
+			return config;
 		}
 				  
 		service.apiCall = function(config, callback){
 			$http(config).success(function (response) {
-				$rootScope.sessionTime = (Number(response.sessionTimeout == undefined || response.sessionTimeout == null ? ($rootScope.sessionTime / 60000) : response.sessionTimeout) * 60000);
-				$rootScope.$broadcast('clearTimer', {data:{}});
+				//$rootScope.sessionTime = (Number(response.sessionTimeout == undefined || response.sessionTimeout == null ? ($rootScope.sessionTime / 60000) : response.sessionTimeout) * 60000);
                 busyNotificationService.hideBusyIndicator();
 				if($rootScope.globals.currentUser == undefined || $rootScope.globals.currentUser == null)
 					$rootScope.globals.currentUser = {};
@@ -71,12 +69,12 @@ myApp.factory('interceptorService', ['Base64', 'busyNotificationService', 'modal
 					bodyText: 'Could not connect to Server. Please Contact Support.'
 				};
 				modalService.showModal({}, modalOptions).then(function (result) {});
-				try{
+				/* try{
 					$rootScope.sessionTime = (Number(response.sessionTimeout == undefined || response.sessionTimeout == null ? ($rootScope.sessionTime / 60000) : response.sessionTimeout) * 60000);
 					$rootScope.$broadcast('clearTimer', {data:{}});
 				}catch(e){
 					console.log("Error in Interceptor Service"+e);
-				}
+				} */
                 callback(response);
 				busyNotificationService.hideBusyIndicator();
             });

@@ -45,6 +45,10 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 			controller: "nbfcController",
 			templateUrl: "app/Views/management/nbfc.html",
 			params: {data: null}
+		})
+		.state('dashboard', {
+			url: "/dashboard",
+			controller: "dashboardController",
+			templateUrl: "dashboard/index.html"
 		});
-
 });

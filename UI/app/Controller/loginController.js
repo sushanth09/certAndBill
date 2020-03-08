@@ -35,7 +35,7 @@ myApp.controller('loginController', ['busyNotificationService', 'modalService', 
 					console.log("userRole: " + $scope.userRole);
 					if($scope.userRole == "ADMIN") {
 						console.log("inside if");
-						$state.go("userManagement");
+						$state.go("dashboard");
 					} else if($scope.userRole == "STAFF") {
 						$state.go("staff");
 					} else if($scope.userRole == "STUDENT") {

@@ -1,87 +1,196 @@
 <html>
 <head></head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<body>
-	<table id="table_id">
-		<thead>
-			<tr>
-				<th>User Id</th>
-				<th>Username</th>
-				<th>Firstname</th>
-				<th>Lastname</th>
-				<th>Email</th>
-				<th>Mobile No.</th>
-				<th>DOB</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>data-1a</td>
-				<td>data-1b</td>
-				<td>data-1c</td>
-			</tr>
-			<tr>
-				<td>data-2a</td>
-				<td>data-2b</td>
-				<td>data-2c</td>
-			</tr>
-			<tr>
-				<td>data-3a</td>
-				<td>data-3b</td>
-				<td>data-3c</td>
-			</tr>
-			<tr>
-				<td>data-4a</td>
-				<td>data-4b</td>
-				<td>data-4c</td>
-			</tr>
-			<tr>
-				<td>data-1a</td>
-				<td>data-1b</td>
-				<td>data-1c</td>
-			</tr>
-			<tr>
-				<td>data-2a</td>
-				<td>data-2b</td>
-				<td>data-2c</td>
-			</tr>
-			<tr>
-				<td>data-3a</td>
-				<td>data-3b</td>
-				<td>data-3c</td>
-			</tr>
-			<tr>
-				<td>data-4a</td>
-				<td>data-4b</td>
-				<td>data-4c</td>
-			</tr>
-			<tr>
-				<td>data-1a</td>
-				<td>data-1b</td>
-				<td>data-1c</td>
-			</tr>
-			<tr>
-				<td>data-2a</td>
-				<td>data-2b</td>
-				<td>data-2c</td>
-			</tr>
-			<tr>
-				<td>data-3a</td>
-				<td>data-3b</td>
-				<td>data-3c</td>
-			</tr>
-			<tr>
-				<td>data-4a</td>
-				<td>data-4b</td>
-				<td>data-4c</td>
-			</tr>
-			.....   
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<body>
+		<div class = "container">
+			<div class='noPadding' style='text-align:center; display:inline-block;float: right'>
+				<div class="form-group inlineBlock pull-right no-right-padding"
+					style="margin-bottom:0px;">
+					<button class='btn btn-primary' ng-click="showNewUserPopup()"
+						title="Add Staff">Add Staff</button>
+				</div>
+			</div>
+			<div id="userDetails" class="modal" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header modalPinkFont">
+							<h3 class="modal-title pull-left">Add Staff</h3>
+							<div class="pull-right">
+								<button class="close-request action-icons" title="Cancel" data-dismiss="modal"
+									ng-click="resetData()"></button>
+							</div>
+						</div>
+						<form name="myForm" ng-submit="saveUserDetails()" id="newnbfc">
+							<div class="modal-body">
+								<div class="col-sm-12 noPadding">
+										<div class="col-sm-12 noPadding">
+									<div class="form-group col-sm-6">
+										<label class="control-label required">Username</label>
+										<input type="text" id="userName" class="form-control" ng-model="userDetails.userName" oninput="this.value = nameInput(this.value).toUpperCase()"/>
+										<span class="error" id = "userNameId"></span>
+									</div>
+									<div class="form-group col-sm-6">
+										<label class="control-label required">Firstname</label>
+										<input type="text" id="firstName" class="form-control" ng-model="userDetails.firstName"
+											oninput="this.value = bankNameValid(this.value).toUpperCase()"/>
+										<span class="error" id = "firstNameId"></span>
+									</div>
+									<div class="form-group col-sm-6">
+										<label class="control-label required">Lastname</label>
+										<input type="text" id="firstName" class="form-control" ng-model="userDetails.lastName"
+											oninput="this.value = lastNameValid(this.value).toUpperCase()"/>
+										<span class="error" id = "lastNameId"></span>
+									</div>
+										</div>
+										<div class="col-sm-12 noPadding">
+									<div class="form-group col-sm-6">
+										<label class="control-label required">Email</label>
+										<input type="text" id="email" class="form-control"
+											ng-model="userDetails.email"/>
+										<span class="error" id = "emailId"></span>
+									</div>
+									<div class="form-group col-sm-6">
+										<label class="control-label required">Mobile No.</label>
+										<input type="text" id="mobileNo" class="form-control" ng-model="userDetails.mobileNo"
+											maxlength="10"/>
+										<span class="error" id = "mobileId"></span>
+									</div>
+								</div>
+								<div class="form-group col-sm-6">
+									<label class="control-label required">DOB</label>
+									<input type="text" id="dateBirth" class="form-control" ng-model="userDetails.dateBirth"/>
+									<span class="error" id = "dateBirthId"></span>
+								</div>
+								</div>
+							</div>
+							<div class="modal-footer footerBorder">
+								<div class="pull-right">
+									<div class="form-group">
+										<input type="submit" value="Save" class="btn btn-primary saveBtn" />
+										<input type="submit" value="Cancel" data-dismiss="modal" ng-click="resetData()"
+											class="btn btn-primary saveBtn" />
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<table id="table_id">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Firstname</th>
+					<th>Lastname</th>
+					<th>Email</th>
+					<th>Mobile No.</th>
+					<th>DOB</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+				</tr>
+				<tr>
+					<td>data-2a</td>
+					<td>data-2b</td>
+					<td>data-2c</td>
+					<td>data-2a</td>
+					<td>data-2b</td>
+					<td>data-2c</td>
+				</tr>
+				<tr>
+					<td>data-3a</td>
+					<td>data-3b</td>
+					<td>data-3c</td>
+					<td>data-3a</td>
+					<td>data-3b</td>
+					<td>data-3c</td>
+				</tr>
+				<tr>
+					<td>data-4a</td>
+					<td>data-4b</td>
+					<td>data-4c</td>
+					<td>data-4a</td>
+					<td>data-4b</td>
+					<td>data-4c</td>
+				</tr>
+				<tr>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+				</tr>
+				<tr>
+					<td>data-2a</td>
+					<td>data-2b</td>
+					<td>data-2c</td>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+				</tr>
+				<tr>
+					<td>data-3a</td>
+					<td>data-3b</td>
+					<td>data-3c</td>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+				</tr>
+				<tr>
+					<td>data-4a</td>
+					<td>data-4b</td>
+					<td>data-4c</td>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+				</tr>
+				<tr>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+				</tr>
+				<tr>
+					<td>data-2a</td>
+					<td>data-2b</td>
+					<td>data-2c</td>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+				</tr>
+				<tr>
+					<td>data-3a</td>
+					<td>data-3b</td>
+					<td>data-3c</td>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+				</tr>
+				<tr>
+					<td>data-4a</td>
+					<td>data-4b</td>
+					<td>data-4c</td>
+					<td>data-1a</td>
+					<td>data-1b</td>
+					<td>data-1c</td>
+				</tr> 
 			</tbody>
 		</table>
 	</body>
 </html>
-
 <script>
     $(document).ready(function () {
         $('#table_id').DataTable();

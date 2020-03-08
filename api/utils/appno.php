@@ -36,7 +36,7 @@
 
 	function genBpUniqueId($panNo){
 		$uniqueId = substr(date("Y"), 2);
-		$uniqueId .= $panNo ;
+		$uniqueId .= $panNo;
 		$uniqueId .= "001";
 		return $uniqueId;
 	}
@@ -166,13 +166,13 @@
 			return $profileId;
 	}
 	
-	function getEmailIdFromApplication($conn, $appFormId){
+	/* function getEmailIdFromApplication($conn, $appFormId){
 			$sql="SELECT TRIM(CONCAT(AD_I_BI_EMAIL_ID,AD_NI_AD_EMAIL_ID)) AS EMAIL_ID FROM APPLICANT_DETAILS WHERE APP_FORM_ID=:appFormId";
 			$paramList = array();
 			$paramList["appFormId"] = $appFormId;
 			$result = $GLOBALS["database"]->selectParamQuery($conn, $sql, $paramList)[0];
 			return $result["EMAIL_ID"];
-	}
+	} */
 
 	function validateDate($dbdate){
 		$currDate = date('Y-m-d');
@@ -180,12 +180,14 @@
 		return $compresult;
 	}
 
-	function genUniqueServiceId(){
-		$appId = "SR";
+	function genUniqueUserId($idType){
+		LoggerInfo("appno.php", "reached here: ");
+		$appId = $idType;
 		$iur = date('ymd');
 		$iur .= mt_rand(01,99);
 		$appId .= $iur;
-		return  $appId;
+		LoggerInfo("appno.php", "reached here: ".$idType);
+		return $appId;
 	}
 
 	function genUniqueUploadFileId(){
@@ -299,14 +301,6 @@
 		$sql .= ")";
 		return $sql;
 	}
-	
-	function fetchConstantsData($database, $conn, $key){
-		$sql = "SELECT * FROM MITRON_CONSTANTS WHERE CONSTANT_NAME = :constant_name";
-		$paramList = array();
-		$paramList["constant_name"] = $key;
-		$result = $database->selectParamQuery($conn, $sql, $paramList);
-		return $result[0]["CONSTANT_VALUE"];
-	}
 
 	function fetchValidationConstantsData($database, $conn, $key){
 		$sql = "SELECT * FROM SERVER_VALIDATION_CONSTANTS WHERE CONSTANT_NAME = :constant_name";
@@ -325,7 +319,7 @@
 	}
 	
 	//To validate user session expired or not
-	function checkSessionTimer($database, $conn, $id){
+	/* function checkSessionTimer($database, $conn, $id){
 		$sessionTime = fetchConstantsData($database, $conn, "SessionTimeOutInMin");
 		if(!isset($sessionTime) || empty($sessionTime)){$sessionTime = 15;}
 		$sql = "SELECT * FROM USER_SESSION WHERE CURRENT_TIMESTAMP BETWEEN LAST_SESSION_TIME AND DATE_ADD(LAST_SESSION_TIME, INTERVAL ".$sessionTime." MINUTE)";
@@ -336,10 +330,10 @@
 			return false;
 		}
 		return true;
-	}
+	} */
 	
 	//To set session timer of user
-	function setSessionTimer($database, $conn, $req_data){
+	/* function setSessionTimer($database, $conn, $req_data){
 		$sql = "SELECT * FROM USER_SESSION WHERE LOGIN_ID =:loginId";
 		$paramList = array();
 		$paramList["loginId"] = $req_data["LOGIN_ID"];
@@ -368,7 +362,7 @@
 			$res = $database->updateQuery($conn, $sql, $paramList);
 		}
 		 return true;
-	}
+	} */
 
 
 	function changeDateFormat($dateValue){

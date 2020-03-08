@@ -25,6 +25,7 @@
 	myApp.constant('serverconfig', {
 		LOGIN_URL: APP_API_URL + 'controller/login.php',
 		LOGOUT_URL: APP_API_URL + 'controller/logout.php',
+		DASHBOARD_URL: APP_API_URL + 'controller/admin.php',
 		METHOD_POST: 'POST'
 	});
 
